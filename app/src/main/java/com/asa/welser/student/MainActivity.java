@@ -41,6 +41,7 @@ import android.widget.Toast;
 public class MainActivity extends Activity implements AdapterView.OnItemSelectedListener {
     /** Called when the activity is first created. */
     JSONArray android = null;
+    JSONArray androids = null;
     ListView list;
     Spinner spinner1;
     Spinner spinner2;
@@ -231,7 +232,7 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
                     String id =         "ID:               "+ c.getString(TAG_ID);
                     String semester =   "Semester:  " + c.getString(TAG_SEMESTER);
                     String grade =      "Note:          " + c.getString(TAG_GRADE);
-                    String difference = "test";
+                    String difference = "Notendifferenz: " ;
 // Adding value HashMap key => value
 
                     if(selectionSemester+1 == Integer.parseInt(c.getString(TAG_SEMESTER)) | selectionSemester == 3){
@@ -239,6 +240,45 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
                         map.put(TAG_ID, id);
                         map.put(TAG_SEMESTER, semester);
                         map.put(TAG_GRADE, grade);
+                        int j;
+                        if(c.getString(TAG_SEMESTER).contentEquals("1")){
+                            difference = "Differenz:    --";
+                        } else{
+                            androids = json.getJSONArray(TAG_LIST);
+                            for ( j = 0; j < androids.length(); j++) {
+                                JSONObject d = androids.getJSONObject(j);
+
+
+                                String x = c.getString(TAG_ID);
+                                String y = d.getString(TAG_ID);
+                                    if (c.getString(TAG_ID).equals(d.getString(TAG_ID)) | c.getString(TAG_ID).equalsIgnoreCase(d.getString(TAG_ID))){
+
+
+                                        int a = Integer.parseInt(c.getString(TAG_SEMESTER));
+                                        int b = Integer.parseInt(d.getString(TAG_SEMESTER));
+
+                                        if( Integer.parseInt(c.getString(TAG_SEMESTER))-1 == Integer.parseInt(d.getString(TAG_SEMESTER))
+                                                ){
+                                            double dif = Double.parseDouble(d.getString(TAG_GRADE))- Double.parseDouble(c.getString(TAG_GRADE));
+                                            double temp = dif * 100;
+                                            temp = Math.round(temp);
+                                            temp = temp / 100;
+                                            dif = 0;
+                                            difference = "Differenz:   " + temp;
+                                            break;
+                                        } else {
+                                            int as = Integer.parseInt(c.getString(TAG_SEMESTER));
+                                            int bs = Integer.parseInt(d.getString(TAG_SEMESTER));
+                                            //difference += "Differenz: xxx " + as + " " + bs +"\n";
+                                            difference = "Differenz:    --";
+                                        }
+                                    } else {
+                                        //difference += "Differenz: " + x+ " " + y + " \n ";
+                                        difference = "Differenz:    --";
+                                    }
+                            }
+
+                        }
                         map.put(TAG_DIFFERENCE,difference);
                         oslist.add(map);
                     }
