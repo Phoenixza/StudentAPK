@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Student</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+
+    <string-array name="semester">
+        <item>Semester 1</item>
+        <item>Semester 2</item>
+        <item>Semester 3</item>
+        <item>Semester "ALL"</item>
+    </string-array>
+
+        <string-array name="sort">
+            <item>Aufsteigend Name</item>
+            <item>Absteigend Name</item>
+            <item>Aufsteigend Note</item>
+            <item>Absteigend Note</item>
+        </string-array>
+
+
+</resources>
