@@ -1,4 +1,5 @@
 package com.asa.welser.student;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,10 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -18,9 +16,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import android.app.Activity;
-import android.app.ListActivity;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -87,20 +83,12 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         setContentView(R.layout.main);
         spinner1 = (Spinner) findViewById(R.id.spinner);
         spinner2 = (Spinner) findViewById(R.id.spinner2);
-        getdata = (Button) findViewById(R.id.getdata);
-        // get reference to the views
-        //etResponse = (EditText) findViewById(R.id.etResponse);
-        tvIsConnected = (TextView) findViewById(R.id.tvIsConnected);
+        getdata = (Button) findViewById(R.id.button);
 
-        // check if you are connected or not
-        if(isConnected()){
-            tvIsConnected.setBackgroundColor(0xFF00CC00);
-            tvIsConnected.setText("You are conncted");
-        }
-        else{
-            tvIsConnected.setText("You are NOT conncted");
-        }
-
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.sort, R.layout.spinner_layout);
+        spinner1.setAdapter(adapter);
+        ArrayAdapter adapter2 = ArrayAdapter.createFromResource(this, R.array.semester, R.layout.spinner_layout);
+        spinner2.setAdapter(adapter2);
         // spinner1 = Sort
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -205,22 +193,11 @@ public class MainActivity extends Activity implements AdapterView.OnItemSelected
         // onPostExecute displays the results of the AsyncTask.
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getBaseContext(), "Received!" +selectionSemester + selectionSort , Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Daten geladen!" , Toast.LENGTH_SHORT).show();
             try {
 
                 JSONObject json = new JSONObject(result);
                 oslist.clear();
-                String str = "";
-
-                JSONArray articles = json.getJSONArray("students");
-                str += "students length = " + json.getJSONArray("students").length();
-                str += "\n";
-                str += "names: " + articles.getJSONObject(0).names();
-                str += "\n";
-                str += "url: " + articles.getJSONObject(0).getString("id");
-
-                //etResponse.setText(str);
-                //etResponse.setText(json.toString(1));
 // Getting JSON Array from URL
                 android = json.getJSONArray(TAG_LIST);
                 for (int i = 0; i < android.length(); i++) {

@@ -1,22 +1,22 @@
 <resources>
-    <string name="app_name">Student</string>
+    <string name="app_name">Notenportal</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
 
     <string-array name="semester">
-        <item>Semester 1</item>
-        <item>Semester 2</item>
-        <item>Semester 3</item>
-        <item>Semester "ALL"</item>
+        <item>Semester \n 1</item>
+        <item>Semester \n 2</item>
+        <item>Semester \n 3</item>
+        <item>Semester \n "ALL"</item>
     </string-array>
 
         <string-array name="sort">
-            <item>Aufsteigend Name</item>
-            <item>Absteigend Name</item>
-            <item>Aufsteigend Note</item>
-            <item>Absteigend Note</item>
+            <item>Aufsteigend \n Name</item>
+            <item>Absteigend \n Name</item>
+            <item>Aufsteigend \n Note</item>
+            <item>Absteigend \n Note</item>
         </string-array>
 
 
